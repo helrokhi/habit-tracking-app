@@ -1,20 +1,18 @@
 package ru.ylab.dto;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Person {
     private final User user;
     private String name;
     private Boolean isBlocked;
-    private Set<Habit> habits;
+    private ArrayList<Habit> habits;
 
     public Person(User user) {
         this.user = user;
         name = "";
         isBlocked = false;
-        habits = new HashSet<>(0);
+        habits = new ArrayList<>(0);
     }
 
     public User getUser() {
@@ -23,6 +21,14 @@ public class Person {
 
     public String getName() {
         return name;
+    }
+
+    public ArrayList<Habit> getHabits() {
+        return habits;
+    }
+
+    public Habit getHabitByIndex(int index) {
+        return habits.get(index);
     }
 
     public void setName(String name) {

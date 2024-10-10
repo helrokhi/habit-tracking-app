@@ -3,5 +3,6 @@ package ru.ylab.dto.enums;
 public enum Frequency {
     DAILY,
     WEEKLY,
-    MONTHLY
+    MONTHLY,
+    ONCE
 }

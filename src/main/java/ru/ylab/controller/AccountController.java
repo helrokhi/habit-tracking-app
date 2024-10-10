@@ -2,9 +2,7 @@ package ru.ylab.controller;
 
 import ru.ylab.dto.Database;
 import ru.ylab.dto.Person;
-import ru.ylab.service.HabitService;
 import ru.ylab.service.OutService;
-import ru.ylab.service.UserService;
 
 import java.util.Scanner;
 
@@ -32,15 +30,16 @@ public class AccountController {
         String query = scanner.nextLine().trim();
         switch (query) {
             case "0": {
-                new OutService().management();
+                new OutService().out();
                 new AuthController(database).start();
                 break;
             }
             case "1":
-                new UserService(person, database).management();
+                new UserController(person, database).user();
                 break;
             case "2":
-                new HabitService(person).management();
+                //new HabitService(person).management();
+                new HabitsController(person, database).habits();
                 break;
             default: {
                 new AuthController(database).start();
