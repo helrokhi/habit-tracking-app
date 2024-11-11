@@ -1,0 +1,25 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="Elena Yankovskaya" id="insert-initial-data-person">
+        <sql>
+            INSERT INTO tracking_habit.person (id, user_id, name, is_blocked)
+            VALUES
+            ('10000', '1000', 'Thomas Cox', FALSE),
+            ('10001', '1001', 'Matthew Martin', FALSE),
+            ('10002', '1002', 'Arnold Collier', FALSE),
+            ('10003', '1003', 'John Evans', FALSE),
+            ('10004', '1004', 'Andrea Barnes', TRUE),
+            ('10005', '1005', 'Jennifer Hicks', FALSE),
+            ('10006', '1006', 'Kenneth Figueroa', FALSE),
+            ('10007', '1007', 'Timothy Jackson', TRUE),
+            ('10008', '1008', 'Curtis Ford', FALSE),
+            ('10009', '1009', 'Linda Rodgers', FALSE);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

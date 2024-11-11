@@ -1,0 +1,18 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+        <include file="tracking_habit-schema-init.xml" relativeToChangelogFile="true"/>
+        <include file="auth-user_init.xml" relativeToChangelogFile="true"/>
+        <include file="table-person_init.xml" relativeToChangelogFile="true"/>
+        <include file="table-habit_init.xml" relativeToChangelogFile="true"/>
+        <include file="table-habit-history_init.xml" relativeToChangelogFile="true"/>
+        <include file="insert-user-table_init.xml" relativeToChangelogFile="true"/>
+        <include file="insert-person-table_init.xml" relativeToChangelogFile="true"/>
+        <include file="insert-habit-table_init.xml" relativeToChangelogFile="true"/>
+        <include file="insert-habit-history-table_init.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>
