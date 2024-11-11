@@ -1,0 +1,36 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="Elena Yankovskaya"
+               id="create-table-habit-history">
+
+        <createTable schemaName="tracking_habit"
+                     tableName="habit_history"
+                     remarks="История выполнения привычек">
+
+            <column name="id"
+                    autoIncrement="true"
+                    type="BIGINT"
+                    remarks="ID события">
+                <constraints nullable="false"
+                             unique="true"/>
+            </column>
+
+            <column name="habit_id"
+                    type="BIGINT"
+                    remarks="ID пользователя">
+                <constraints nullable="false"
+                             foreignKeyName="history_habit_id"/>
+            </column>
+
+            <column name="time"
+                    type="timestamp"
+                    remarks="Дата/время изменения статуса привычки"/>
+
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

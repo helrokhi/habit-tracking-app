@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="delete-data-user" author="Elena Yankovskaya">
+        <sql>
+            DELETE FROM user WHERE id IN ('1000','1001','1002','1003','1004','1005','1006','1007','1008','1009');
+        </sql>
+    </changeSet>
+
+    <changeSet id="delete-data-person" author="Elena Yankovskaya" >
+        <sql>
+            DELETE FROM person WHERE user_id IN ('1000','1001','1002','1003','1004','1005','1006','1007','1008','1009');
+        </sql>
+    </changeSet>
+
+    <changeSet id="delete-data-habit" author="Elena Yankovskaya" >
+        <sql>
+            DELETE FROM habit WHERE id IN ('1000','1001','1002','1003','1004','1005','1006','1007','1008','1009');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

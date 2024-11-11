@@ -1,0 +1,25 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="insert-initial-data-habit" author="Elena Yankovskaya" >
+        <sql>
+            INSERT INTO tracking_habit.habit (id, person_id, title, text, time, frequency)
+            VALUES
+            ('1000', '10000', 'habit 0', 'text habit 0', '2023-11-10 14:05', 'DAILY'),
+            ('1001', '10000', 'habit 1', 'text habit 1', '2023-11-11 15:056', 'WEEKLY'),
+            ('1002', '10000', 'habit 2', 'text habit 2', '2023-11-13 08:05', 'DAILY'),
+            ('1003', '10000', 'habit 3', 'text habit 3', '2023-11-15 01:05', 'DAILY'),
+            ('1004', '10000', 'habit 4', 'text habit 4', '2023-11-18 05:05', 'WEEKLY'),
+            ('1005', '10000', 'habit 5', 'text habit 5', '2023-11-21 23:05', 'WEEKLY'),
+            ('1006', '10000', 'habit 6', 'text habit 6', '2023-11-30 17:05', 'DAILY'),
+            ('1007', '10000', 'habit 7', 'text habit 7', '2023-12-11 10:05', 'DAILY'),
+            ('1008', '10000', 'habit 8', 'text habit 8', '2023-12-21 09:05', 'WEEKLY'),
+            ('1009', '10000', 'habit 9', 'text habit 9', '2023-12-25 18:05', 'DAILY');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
