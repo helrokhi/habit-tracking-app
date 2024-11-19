@@ -16,7 +16,10 @@ public class StatisticsController {
         switch (scannerService.statisticsMenu()) {
             case "1" -> {
                 System.out.println("Подсчет текущих серий выполнения привычек\n");
-                //* какой-то код
+                TrackingHabitsService trackingHabitsService =
+                        new TrackingHabitsService();
+                TrackingDto trackingDto = trackingHabitsService.streak(person.getId());
+                trackingHabitsService.toStringStreak(trackingDto);
                 statistics();
             }
             case "2" -> {
