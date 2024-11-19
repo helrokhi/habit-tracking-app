@@ -22,8 +22,7 @@ public class Database {
      * Получение данных из файла config.properties
      */
     public String driver(String quest) {
-        String path = "C:\\Users\\Asus\\IdeaProjects\\homework-ylab\\homework_1\\" +
-                "src\\main\\resources\\" +
+        String path = "C:\\Users\\Asus\\IdeaProjects\\habit-tracking-app\\src\\main\\resources\\" +
                 "config.properties";
         Properties property = new Properties();
         String result = "";

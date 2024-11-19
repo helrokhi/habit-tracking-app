@@ -65,8 +65,8 @@ public class HabitService {
     /**
      * Получить список всех привычек пользователя по id пользователя
      *
-     * @param personId
-     * @return
+     * @param personId id пользователя
+     * @return список привычек пользователя
      */
     public ArrayList<HabitDto> getHabits(Long personId) {
         HabitRepository habitRepository = new HabitRepositoryImpl();
@@ -77,7 +77,7 @@ public class HabitService {
      * Получить список всех привычек из базы данных
      * для личного кабинета пользователя с ролью admin
      *
-     * @return
+     * @return список всех привычек
      */
     public ArrayList<HabitDto> getAllHabits() {
         HabitRepository habitRepository = new HabitRepositoryImpl();
@@ -87,8 +87,8 @@ public class HabitService {
     /**
      * Обновить данные привычки (название, описание и частоту)
      *
-     * @param habitDto
-     * @return
+     * @param habitDto dto привычки
+     * @return dto привычки с обновленными данными
      */
     public HabitDto update(HabitDto habitDto) {
         HabitRepository habitRepository = new HabitRepositoryImpl();
@@ -98,7 +98,7 @@ public class HabitService {
     /**
      * Вывод списка привычек в консоль
      *
-     * @param habits
+     * @param habits список привычек
      */
     public void toStringListHabits(List<HabitDto> habits) {
         if (habits.isEmpty()) {
@@ -114,8 +114,8 @@ public class HabitService {
     /**
      * Сортировать список привычек по дате создания
      *
-     * @param habits
-     * @return
+     * @param habits список привычек
+     * @return список привычек, отсортированный по дате создания привычки
      */
     public List<HabitDto> getSortHabitsByTime(List<HabitDto> habits) {
         return habits
@@ -127,9 +127,9 @@ public class HabitService {
     /**
      * Сортировать список привычек по статусу (выполнена или не выполнена)
      *
-     * @param habits
-     * @param isDone
-     * @return
+     * @param habits список привычек
+     * @param isDone статус привычки
+     * @return список привычек с определенным статусом
      */
     public List<HabitDto> getHabitsByStatus(List<HabitDto> habits, Boolean isDone) {
         return habits.stream()
@@ -141,8 +141,8 @@ public class HabitService {
      * Получить список привычек пользователя
      * с добавлением текущего статуса привычки
      *
-     * @param personId
-     * @return
+     * @param personId id пользователя
+     * @return список привычек с из текущим статусом
      */
     public List<HabitDto> getHabitsWithStatus(Long personId) {
         HabitRepository habitRepository = new HabitRepositoryImpl();
@@ -157,8 +157,8 @@ public class HabitService {
      * Получить последний записанный в базу данных
      * статус выполнения привычки по id привычки
      *
-     * @param habitId
-     * @return
+     * @param habitId id привычки
+     * @return dto о выполнении привычки из БД
      */
     public StatusDto getLastStatus(Long habitId) {
         StatusRepository statusRepository = new StatusRepositoryImpl();
@@ -168,23 +168,23 @@ public class HabitService {
     /**
      * Получить текущий статус привычки
      *
-     * @param habitDto
-     * @return
+     * @param habitDto dto привычки
+     * @return true or false (текущий статус привычки)
      */
-    public boolean isDoneHabit(HabitDto habitDto) {
+    private boolean isDoneHabit(HabitDto habitDto) {
         return habitDto.getFrequency().equals(Frequency.WEEKLY) ?
-                getCurrentStatusWhenFrequencyIsWeekly(habitDto) :
-                getCurrentStatusWhenFrequencyIsDaily(habitDto);
+                getCurrentStatusWhenFrequencyIsWeekly(habitDto.getId()) :
+                getCurrentStatusWhenFrequencyIsDaily(habitDto.getId());
     }
 
     /**
      * Узнать текущий статус привычки если частота привычки DAILY
      *
-     * @param habitDto
-     * @return
+     * @param habitId id привычки
+     * @return true or false (текущий статус привычки если частота привычки DAILY)
      */
-    public boolean getCurrentStatusWhenFrequencyIsDaily(HabitDto habitDto) {
-        LocalDate lastExecuteTime = getLastExecuteTimeByHabit(habitDto);
+    private boolean getCurrentStatusWhenFrequencyIsDaily(Long habitId) {
+        LocalDate lastExecuteTime = getLastExecuteTimeByHabit(habitId);
         LocalDate today = OffsetDateTime.now().toLocalDate();
 
         return today.isEqual(lastExecuteTime);
@@ -193,11 +193,11 @@ public class HabitService {
     /**
      * Узнать текущий статус привычки если частота привычки WEEKLY
      *
-     * @param habitDto
-     * @return
+     * @param habitId id привычки
+     * @return true or false (текущий статус привычки, если частота привычки WEEKLY)
      */
-    public boolean getCurrentStatusWhenFrequencyIsWeekly(HabitDto habitDto) {
-        LocalDate lastExecuteTime = getLastExecuteTimeByHabit(habitDto);
+    private boolean getCurrentStatusWhenFrequencyIsWeekly(Long habitId) {
+        LocalDate lastExecuteTime = getLastExecuteTimeByHabit(habitId);
         LocalDate start = OffsetDateTime.now().toLocalDate().minusDays(7);
         LocalDate finish = OffsetDateTime.now().toLocalDate();
 
@@ -208,13 +208,13 @@ public class HabitService {
      * Получить из базы данных сведения о дате последнего выполнения привычки
      * по id привычки
      *
-     * @param habitDto
-     * @return
+     * @param habitId id привычки
+     * @return дата последнего выполнения привычки в формате LocalDate
      */
-    private LocalDate getLastExecuteTimeByHabit(HabitDto habitDto) {
+    private LocalDate getLastExecuteTimeByHabit(Long habitId) {
         StatusRepository statusRepository = new StatusRepositoryImpl();
         return statusRepository
-                .getLastStatusByHabitId(habitDto.getId())
+                .getLastStatusByHabitId(habitId)
                 .getTime()
                 .toLocalDate();
     }

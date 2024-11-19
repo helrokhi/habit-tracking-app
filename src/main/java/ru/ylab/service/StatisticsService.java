@@ -1,10 +1,7 @@
 package ru.ylab.service;
 
-import ru.ylab.dto.HabitDto;
-import ru.ylab.dto.StatisticDto;
-import ru.ylab.dto.StatusDto;
-import ru.ylab.dto.enums.Frequency;
-import ru.ylab.dto.enums.PeriodType;
+import ru.ylab.dto.*;
+import ru.ylab.dto.enums.*;
 import ru.ylab.repository.StatusRepository;
 import ru.ylab.repository.impl.StatusRepositoryImpl;
 
