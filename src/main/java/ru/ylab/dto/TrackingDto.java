@@ -7,6 +7,6 @@ import lombok.Data;
 @Builder
 public class TrackingDto {
     private Integer numberOfHabits;//Всего привычек
-    private Integer numberOfHabitsNeedDoneToday;//Нужно выполнить
-    private Integer numberOfHabitsIsDoneToday;//выполнено привычек
+    private Integer numberOfHabitsNeedDone;//Нужно выполнить
+    private Integer numberOfHabitsIsDone;//выполнено привычек
 }

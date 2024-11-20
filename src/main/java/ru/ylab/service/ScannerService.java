@@ -4,6 +4,7 @@ import ru.ylab.dto.PersonDto;
 import ru.ylab.dto.RegHabit;
 import ru.ylab.dto.RegUser;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ScannerService {
@@ -192,6 +193,18 @@ public class ScannerService {
                 "еженедельно (weekly), по умолчанию ежедневно (daily)) ");
         String frequency = scanner.nextLine().trim();
         return new RegHabit(title, text, frequency);
+    }
+
+    public String createStartLocalDate() {
+        scanner = new Scanner(System.in);
+        System.out.println("Укажите дату начала периода в формате «ГГГГ-ММ-ДД»");
+        return scanner.nextLine().trim();
+    }
+
+    public String createEndLocalDate() {
+        scanner = new Scanner(System.in);
+        System.out.println("Укажите дату завершения периода в формате «ГГГГ-ММ-ДД»");
+        return scanner.nextLine().trim();
     }
 
     public String updateNamePerson(PersonDto personDto) {
