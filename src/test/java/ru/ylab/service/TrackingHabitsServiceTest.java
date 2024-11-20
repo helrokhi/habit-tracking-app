@@ -36,8 +36,8 @@ class TrackingHabitsServiceTest {
         TrackingDto trackingDto = trackingHabitsService.streak(10000L);
 
         Assertions.assertEquals(10, trackingDto.getNumberOfHabits());
-        Assertions.assertEquals(4, trackingDto.getNumberOfHabitsIsDoneToday());
-        Assertions.assertEquals(9, trackingDto.getNumberOfHabitsNeedDoneToday());
+        Assertions.assertEquals(4, trackingDto.getNumberOfHabitsIsDone());
+        Assertions.assertEquals(9, trackingDto.getNumberOfHabitsNeedDone());
 
     }
 }

@@ -13,18 +13,22 @@ public class StatisticsController {
         System.out.println("Статистика и аналитика пользователя " + person);
 
         UserService userService = new UserService();
+        TrackingHabitsService trackingHabitsService =
+                new TrackingHabitsService();
         switch (scannerService.statisticsMenu()) {
             case "1" -> {
                 System.out.println("Подсчет текущих серий выполнения привычек\n");
-                TrackingHabitsService trackingHabitsService =
-                        new TrackingHabitsService();
                 TrackingDto trackingDto = trackingHabitsService.streak(person.getId());
                 trackingHabitsService.toStringStreak(trackingDto);
                 statistics();
             }
             case "2" -> {
                 System.out.println("Процент успешного выполнения привычек за определенный период");
-                //* какой-то код
+                String startLocalDate = scannerService.createStartLocalDate();
+                String endLocalDate = scannerService.createEndLocalDate();
+                SuccessRateDto successRate = trackingHabitsService
+                        .getSuccessRate(startLocalDate, endLocalDate, person.getId());
+                trackingHabitsService.toStringSuccessRate(successRate, startLocalDate, endLocalDate);
                 statistics();
             }
             case "3" -> {
