@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ru.ylab.dto.ReportDto;
 import ru.ylab.dto.TrackingDto;
 import ru.ylab.repository.StatusRepository;
 import ru.ylab.repository.TrackingRepository;
@@ -39,5 +40,13 @@ class TrackingHabitsServiceTest {
         Assertions.assertEquals(4, trackingDto.getNumberOfHabitsIsDone());
         Assertions.assertEquals(9, trackingDto.getNumberOfHabitsNeedDone());
 
+    }
+
+    @Test
+    void getReport() {
+        ReportDto reportDto = trackingHabitsService.getReport(10001L);
+
+        Assertions.assertEquals(0, reportDto.getNumberOfHabitsCompleted());
+        Assertions.assertEquals(0, reportDto.getNumberOfHabitsToComplete());
     }
 }

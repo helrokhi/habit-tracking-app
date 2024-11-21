@@ -55,4 +55,20 @@ public interface TrackingRepository {
      * @return количество привычек пользователя, которые нужно выполнить на определенную дату
      */
     int getCountNeedDoneByDate(String date, Long personId);
+
+    /**
+     * Нужно выполнить привычек пользователю
+     *
+     * @param personId id пользователя
+     * @return всего нужно выполнить
+     */
+    int getNumberOfHabitsToComplete(Long personId);
+
+    /**
+     * Количество выполненных привычек пользователя
+     *
+     * @param personId id пользователя
+     * @return всего выполнено привычек пользователя
+     */
+    int getNumberOfHabitsCompleted(Long personId);
 }

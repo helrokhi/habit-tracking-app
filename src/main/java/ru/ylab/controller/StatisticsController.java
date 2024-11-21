@@ -33,7 +33,8 @@ public class StatisticsController {
             }
             case "3" -> {
                 System.out.println("Формирование отчета для пользователя по прогрессу выполнения");
-                //* какой-то код
+                ReportDto report = trackingHabitsService.getReport(person.getId());
+                trackingHabitsService.toStringReport(report);
                 statistics();
             }
 
