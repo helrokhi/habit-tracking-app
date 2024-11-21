@@ -1,6 +1,7 @@
 package ru.ylab.service;
 
 import lombok.NoArgsConstructor;
+import ru.ylab.dto.ReportDto;
 import ru.ylab.dto.SuccessRateDto;
 import ru.ylab.dto.TrackingDto;
 import ru.ylab.repository.TrackingRepository;
@@ -99,6 +100,37 @@ public class TrackingHabitsService {
                         .append(" .") :
                 new StringBuilder()
                         .append(successRate.getMessage());
+        System.out.println(sb);
+    }
+
+    /**
+     * Отчет для пользователя по прогрессу выполнения привычек
+     *
+     * @param personId id пользователя
+     * @return ReportDto
+     */
+    public ReportDto getReport(Long personId) {
+        TrackingRepository trackingRepository = new TrackingRepositoryImpl();
+        int countToComplete = trackingRepository.getNumberOfHabitsToComplete(personId);
+        int countCompleted = trackingRepository.getNumberOfHabitsCompleted(personId);
+        return ReportDto.builder()
+                .numberOfHabitsToComplete(countToComplete)
+                .numberOfHabitsCompleted(countCompleted)
+                .build();
+    }
+
+    /**
+     * Вывод в консоль отчета для пользователя по прогрессу выполнения привычек
+     *
+     * @param reportDto dto c данными для отчета
+     */
+    public void toStringReport(ReportDto reportDto) {
+        StringBuilder sb = new StringBuilder()
+                .append("Прогресс выполнения привычек: ")
+                .append(reportDto.getNumberOfHabitsCompleted())
+                .append("/")
+                .append(reportDto.getNumberOfHabitsToComplete())
+                .append(".");
         System.out.println(sb);
     }
 

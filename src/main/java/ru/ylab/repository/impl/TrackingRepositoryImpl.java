@@ -73,6 +73,28 @@ public class TrackingRepositoryImpl implements DatabaseRepository, TrackingRepos
         return count;
     }
 
+    @Override
+    public int getNumberOfHabitsToComplete(Long personId) {
+        int count = 0;
+        try (Connection connection = DriverManager.getConnection(URL_DB, USER_DB, PASSWORD_DB)) {
+            count = selectCountHabitsToComplete(personId, connection);
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
+        return count;
+    }
+
+    @Override
+    public int getNumberOfHabitsCompleted(Long personId) {
+        int count = 0;
+        try (Connection connection = DriverManager.getConnection(URL_DB, USER_DB, PASSWORD_DB)) {
+            count = selectCountHabitsCompleted(personId, connection);
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
+        return count;
+    }
+
     private int selectCountHabits(Long personId, Connection connection) {
         int count = 0;
         String sql =
@@ -217,6 +239,55 @@ public class TrackingRepositoryImpl implements DatabaseRepository, TrackingRepos
                         "OR (st.max < '" + date + "'  - interval '6 day' " +
                         "AND h.frequency = 'WEEKLY')) " +
                         "AND h.person_id = '" + personId + "' ";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+            resultSet.close();
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
+        return count;
+    }
+
+    private int selectCountHabitsCompleted(Long personId, Connection connection) {
+        int count = 0;
+        String sql =
+                "SELECT " +
+                        "count(*) " +
+                        "FROM tracking_habit.habit_history s " +
+                        "JOIN tracking_habit.habit h " +
+                        "ON h.id = s.habit_id " +
+                        "WHERE h.person_id = '" + personId + "'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+            resultSet.close();
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
+        return count;
+    }
+
+    private int selectCountHabitsToComplete(Long personId, Connection connection) {
+        int count = 0;
+        String sql =
+                "SELECT " +
+                        "sum(" +
+                        "CASE " +
+                            "WHEN h.frequency = 'DAILY' " +
+                            "THEN DATE_PART('day', CURRENT_DATE - h.time) " +
+                            "ELSE TRUNC(DATE_PART('day', CURRENT_DATE - h.time) / 7) " +
+                        "END) " +
+                        "FROM tracking_habit.habit h " +
+                        "WHERE h.person_id = '" + personId + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
