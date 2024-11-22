@@ -58,16 +58,6 @@ public class PersonRepositoryImpl implements PersonRepository, DatabaseRepositor
     }
 
     @Override
-    public PersonDto updatePersonName(Long personId, String name) {
-        try (Connection connection = DriverManager.getConnection(URL_DB, USER_DB, PASSWORD_DB)) {
-            updatePersonDtoName(personId, name, connection);
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-        }
-        return getPersonDtoById(personId);
-    }
-
-    @Override
     public PersonDto updatePerson(PersonDto personDto) {
         try (Connection connection = DriverManager.getConnection(URL_DB, USER_DB, PASSWORD_DB)) {
             updatePersonDto(personDto, connection);
@@ -217,22 +207,6 @@ public class PersonRepositoryImpl implements PersonRepository, DatabaseRepositor
             System.out.println(exception.getMessage());
         }
         return personDto;
-    }
-
-    private void updatePersonDtoName(Long personId, String name, Connection connection) {
-        String updateDataSql =
-                "UPDATE " +
-                        "tracking_habit.person p " +
-                        "SET name = " +
-                        "'" + name + "' " +
-                        "WHERE p.id = '" + personId + "'";
-
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(updateDataSql);
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
     }
 
     private void updatePersonDto(PersonDto personDto, Connection connection) {
@@ -385,26 +359,5 @@ public class PersonRepositoryImpl implements PersonRepository, DatabaseRepositor
             System.out.println(exception.getMessage());
         }
         return personDto.getId();
-    }
-
-    private Long selectUserIdByEmail(String email, Connection connection) {
-        Long userId = 0L;
-        String sqlUser =
-                "SELECT " +
-                        "id " +
-                        "FROM tracking_habit.user u " +
-                        "WHERE u.email = '" + email + "'";
-
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sqlUser);
-            while (resultSet.next()) {
-                userId = resultSet.getLong(1);
-            }
-            resultSet.close();
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
-        return userId;
     }
 }

@@ -66,26 +66,6 @@ public class UserRepositoryImpl implements DatabaseRepository, UserRepository {
     }
 
     @Override
-    public UserAuthDto updateUserEmail(Long userId, String email) {
-        try (Connection connection = DriverManager.getConnection(URL_DB, USER_DB, PASSWORD_DB)) {
-            updateUserAuthDtoEmail(userId, email, connection);
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-        }
-        return getUserAuthDtoById(userId);
-    }
-
-    @Override
-    public UserAuthDto updateUserPassword(Long userId, String name) {
-        try (Connection connection = DriverManager.getConnection(URL_DB, USER_DB, PASSWORD_DB)) {
-            updateUserAuthDtoPassword(userId, name, connection);
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-        }
-        return getUserAuthDtoById(userId);
-    }
-
-    @Override
     public UserAuthDto updateUser(UserAuthDto userAuthDto) {
         try (Connection connection = DriverManager.getConnection(URL_DB, USER_DB, PASSWORD_DB)) {
             updateUserAuthDto(userAuthDto, connection);
@@ -200,38 +180,6 @@ public class UserRepositoryImpl implements DatabaseRepository, UserRepository {
             System.out.println(exception.getMessage());
         }
         return userAuthDto.getId();
-    }
-
-    private void updateUserAuthDtoEmail(Long userId, String email, Connection connection) {
-        String updateDataSql =
-                "UPDATE " +
-                        "tracking_habit.user u " +
-                        "SET email = " +
-                        "'" + email + "' " +
-                        "WHERE u.id = '" + userId + "'";
-
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(updateDataSql);
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
-    }
-
-    private void updateUserAuthDtoPassword(Long userId, String password, Connection connection) {
-        String updateDataSql =
-                "UPDATE " +
-                        "tracking_habit.user u " +
-                        "SET password = " +
-                        "'" + password + "' " +
-                        "WHERE u.id = '" + userId + "'";
-
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(updateDataSql);
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
     }
 
     private void updateUserAuthDto(UserAuthDto userAuthDto, Connection connection) {
