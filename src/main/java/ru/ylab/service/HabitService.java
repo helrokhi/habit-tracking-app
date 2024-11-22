@@ -23,6 +23,10 @@ public class HabitService {
     /**
      * Добавление новой привычки в базу данных
      * используя id пользователя и данных новой привычки (названия, описания и частоты)
+     *
+     * @param personDto dto пользователя для профиля
+     * @param regHabit  данных новой привычки (названия, описания и частоты)
+     * @return HabitDto dto новой привычки
      */
     public HabitDto create(PersonDto personDto, RegHabit regHabit) {
         HabitRepository habitRepository = new HabitRepositoryImpl();
@@ -33,6 +37,9 @@ public class HabitService {
 
     /**
      * Найти привычку по id привычки
+     *
+     * @param habitId id привычки
+     * @return HabitDto dto привычки
      */
     public HabitDto findHabitByIndex(Long habitId) {
         HabitRepository habitRepository = new HabitRepositoryImpl();
@@ -42,6 +49,9 @@ public class HabitService {
     /**
      * Найти привычку по id привычки
      * с добавлением текущего статуса привычки
+     *
+     * @param habitId id привычки
+     * @return HabitDto dto привычки
      */
     public HabitDto findHabitByIndexWithStatus(Long habitId) {
         HabitRepository habitRepository = new HabitRepositoryImpl();
@@ -54,7 +64,7 @@ public class HabitService {
     /**
      * Удалить привычку по id привычки
      *
-     * @param habit
+     * @param habit dto привычки
      */
     public void delete(HabitDto habit) {
         HabitRepository habitRepository = new HabitRepositoryImpl();
@@ -77,7 +87,7 @@ public class HabitService {
      * Получить список всех привычек из базы данных
      * для личного кабинета пользователя с ролью admin
      *
-     * @return список всех привычек
+     * @return ArrayList<HabitDto> список всех привычек
      */
     public ArrayList<HabitDto> getAllHabits() {
         HabitRepository habitRepository = new HabitRepositoryImpl();
@@ -88,7 +98,7 @@ public class HabitService {
      * Обновить данные привычки (название, описание и частоту)
      *
      * @param habitDto dto привычки
-     * @return dto привычки с обновленными данными
+     * @return HabitDto dto привычки с обновленными данными
      */
     public HabitDto update(HabitDto habitDto) {
         HabitRepository habitRepository = new HabitRepositoryImpl();

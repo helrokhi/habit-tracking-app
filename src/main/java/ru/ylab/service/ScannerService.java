@@ -24,7 +24,11 @@ public class ScannerService {
     private final String WEEK = "-- WEEK -- ";
     private final String MONTH = "-- MONTH -- ";
 
-
+    /**
+     * Стартовое меню приложения регистрация/авторизация
+     *
+     * @return String данные из консоли о пункте меню
+     */
     public String startMenu() {
         scanner = new Scanner(System.in);
         System.out.println("Приложение для отслеживания привычек\n");
@@ -35,6 +39,11 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Меню управления пользователем
+     *
+     * @return String данные из консоли о пункте меню
+     */
     public String menuAccount() {
         scanner = new Scanner(System.in);
         System.out.println(
@@ -46,6 +55,11 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Меню управления администратора
+     *
+     * @return String данные из консоли о пункте меню
+     */
     public String menuAdminAccount() {
         scanner = new Scanner(System.in);
         System.out.println(
@@ -58,6 +72,11 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Меню редактирования профиля пользователя
+     *
+     * @return String данные из консоли о пункте меню
+     */
     public String userManagementMenu() {
         scanner = new Scanner(System.in);
         System.out.println(
@@ -69,6 +88,11 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Меню просмотра привычек пользователя
+     *
+     * @return String данные из консоли о пункте меню
+     */
     public String menuHabits() {
         scanner = new Scanner(System.in);
         System.out.println(
@@ -78,6 +102,11 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Меню просмотра привычек пользователя и их сортировка
+     *
+     * @return String данные из консоли о пункте меню
+     */
     public String menuViewHabits() {
         scanner = new Scanner(System.in);
         System.out.println(
@@ -90,6 +119,11 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Меню управления привычками (создание, редактирование, удаление)
+     *
+     * @return String данные из консоли о пункте меню
+     */
     public String habitManagementMenu() {
         scanner = new Scanner(System.in);
         System.out.println(
@@ -100,6 +134,11 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Меню редактирования привычки (изменение названия, описания и частоты)
+     *
+     * @return String данные из консоли о пункте меню
+     */
     public String menuUpdateHabit() {
         scanner = new Scanner(System.in);
         System.out.println(
@@ -110,6 +149,11 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Меню отслеживания выполнения привычек
+     *
+     * @return String данные из консоли о пункте меню
+     */
     public String trackingHabitsMenu() {
         scanner = new Scanner(System.in);
         System.out.println(
@@ -120,6 +164,11 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Меню статистики и аналитики по привычкам пользователя
+     *
+     * @return String данные из консоли о пункте меню
+     */
     public String statisticsMenu() {
         scanner = new Scanner(System.in);
         System.out.println(
@@ -130,6 +179,11 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Меню статистики выполнения привычки за указанный период
+     *
+     * @return String данные из консоли о пункте меню
+     */
     public String habitFulfillmentStatisticsMenu() {
         scanner = new Scanner(System.in);
         System.out.println(
@@ -140,6 +194,12 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+
+    /**
+     * Меню администрирования для пользователя с ролью admin
+     *
+     * @return String данные из консоли о пункте меню
+     */
     public String administrationMenu() {
         scanner = new Scanner(System.in);
         System.out.println(
@@ -151,6 +211,11 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Получение данных пользователя для регистрации/авторизации
+     *
+     * @return RegUser данные пользователя для регистрации/авторизации
+     */
     public RegUser createRegUser() {
         String email = createEmail();
         String password = createPassword();
@@ -159,30 +224,55 @@ public class ScannerService {
         return (!regUser.getEmail().isBlank() && !regUser.getPassword().isBlank()) ? regUser : null;
     }
 
+    /**
+     * Получение данных об адресе электронной почты из консоли
+     *
+     * @return String данные из консоли
+     */
     public String createEmail() {
         scanner = new Scanner(System.in);
         System.out.println("Введите e-mail пользователя");
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Получение данных о пароле из консоли
+     *
+     * @return String данные из консоли
+     */
     public String createPassword() {
         scanner = new Scanner(System.in);
         System.out.println("Введите пароль пользователя");
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Получение данных об индексе привычки из консоли
+     *
+     * @return String данные из консоли
+     */
     public String createIndexHabit() {
         scanner = new Scanner(System.in);
         System.out.println("Укажите индекс привычки");
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Получение данных об индексе пользователя из консоли
+     *
+     * @return String данные из консоли
+     */
     public String createIndexPerson() {
         scanner = new Scanner(System.in);
         System.out.println("Укажите индекс пользователя");
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Получение данных для создания новой привычки из консоли
+     *
+     * @return String данные из консоли
+     */
     public RegHabit createRegHabit() {
         scanner = new Scanner(System.in);
         System.out.println("Напишите название привычки");
@@ -195,18 +285,33 @@ public class ScannerService {
         return new RegHabit(title, text, frequency);
     }
 
+    /**
+     * Получение данных о дате начала периода из консоли
+     *
+     * @return String данные из консоли
+     */
     public String createStartLocalDate() {
         scanner = new Scanner(System.in);
         System.out.println("Укажите дату начала периода в формате «ГГГГ-ММ-ДД»");
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Получение данных о дате завершения периода из консоли
+     *
+     * @return String данные из консоли
+     */
     public String createEndLocalDate() {
         scanner = new Scanner(System.in);
         System.out.println("Укажите дату завершения периода в формате «ГГГГ-ММ-ДД»");
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Получение данных о новом имени пользователя из консоли
+     *
+     * @return String данные из консоли о новом имени пользователя
+     */
     public String updateNamePerson(PersonDto personDto) {
         scanner = new Scanner(System.in);
         System.out.println("Изменение имени " + personDto.getName() + "\n" +
@@ -214,6 +319,11 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Получение данных о новом адресе электронной почты пользователя из консоли
+     *
+     * @return String данные из консоли о новом адресе электронной почты пользователя
+     */
     public String updateEmail(PersonDto personDto) {
         scanner = new Scanner(System.in);
         System.out.println("Изменение email " + personDto + "\n" +
@@ -221,6 +331,11 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Получение данных о новом пароле пользователя из консоли
+     *
+     * @return String данные из консоли о новом пароле пользователя
+     */
     public String updatePassword(PersonDto personDto) {
         scanner = new Scanner(System.in);
         System.out.println("Изменение пароль " + personDto + "\n" +
@@ -228,18 +343,33 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Получение данных о новом названии привычки из консоли
+     *
+     * @return String данные из консоли о новом названии привычки
+     */
     public String updateTitleHabit() {
         scanner = new Scanner(System.in);
         System.out.println("Напишите новое название привычки");
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Получение данных о новом описании привычки из консоли
+     *
+     * @return String данные из консоли о новом описании привычки
+     */
     public String updateTextHabit() {
         scanner = new Scanner(System.in);
         System.out.println("Напишите новое описание привычки");
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Получение данных о новой частоте привычки из консоли
+     *
+     * @return String данные из консоли о новой частоте привычки
+     */
     public String updateFrequencyHabit() {
         scanner = new Scanner(System.in);
         System.out.println("Напишите новую частоту привычки (ежедневно (daily), " +

@@ -11,22 +11,9 @@ import java.util.List;
 @NoArgsConstructor
 public class PersonService {
     /**
-     * Обновление имени пользователя
-     *
-     * @param person
-     * @param name
-     */
-    public void updateName(PersonDto person, String name) {
-        PersonRepository personRepository = new PersonRepositoryImpl();
-        person.setName(name);
-        personRepository.updatePerson(person);
-        System.out.println("Имя пользователя изменено " + person);
-    }
-
-    /**
      * Обновление сведений о пользователе
      *
-     * @param personDto
+     * @param personDto dto пользователя
      */
     public void update(PersonDto personDto) {
         PersonRepository personRepository = new PersonRepositoryImpl();
@@ -37,7 +24,7 @@ public class PersonService {
     /**
      * Удаление пользователя
      *
-     * @param personDto
+     * @param personDto dto пользователя
      */
     public void delete(PersonDto personDto) {
         PersonRepository personRepository = new PersonRepositoryImpl();
@@ -47,8 +34,8 @@ public class PersonService {
     /**
      * Получить пользователя по id
      *
-     * @param personId
-     * @return
+     * @param personId id пользователя
+     * @return PersonDto dto пользователя для профиля
      */
     public PersonDto getPersonById(Long personId) {
         PersonRepository personRepository = new PersonRepositoryImpl();
@@ -59,8 +46,8 @@ public class PersonService {
      * Получить список всех пользователей
      * для меню пользователя с ролью admin
      *
-     * @param personDto
-     * @return
+     * @param personDto dto пользователя
+     * @return ArrayList<PersonDto> список всех пользователей для администратора
      */
     public ArrayList<PersonDto> getAllPersons(PersonDto personDto) {
         PersonRepository personRepository = new PersonRepositoryImpl();
@@ -71,7 +58,7 @@ public class PersonService {
      * Вывод списка пользователь в консоль
      * для меню пользователя с ролью admin
      *
-     * @param personDtos
+     * @param personDtos список пользователей
      */
     public void toStringListPersons(List<PersonDto> personDtos) {
         if (personDtos.isEmpty()) {

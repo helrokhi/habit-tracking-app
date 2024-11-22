@@ -14,6 +14,9 @@ public class AuthService {
     /**
      * Добавление нового профиля пользователя в базу данных
      * используя email и password
+     *
+     * @param regUser данные пользователя для авторизации
+     * @return PersonDto dto пользователя для профиля
      */
     public PersonDto personRegistration(RegUser regUser) {
         UserAuthDto userAuthDto = userAuthorization(regUser);
@@ -24,6 +27,9 @@ public class AuthService {
     /**
      * Получение профиля пользователя из базы данных
      * используя email и password
+     *
+     * @param user данные пользователя для авторизации
+     * @return PersonDto dto пользователя для профиля
      */
     public PersonDto personAuthorization(RegUser user) {
         PersonRepository personRepository = new PersonRepositoryImpl();
@@ -33,6 +39,9 @@ public class AuthService {
     /**
      * Получение данных о пользователе из базы данных
      * используя email и password
+     *
+     * @param user данные пользователя для авторизации
+     * @return UserAuthDto dto пользователя для авторизации
      */
     public UserAuthDto userAuthorization(RegUser user) {
         UserRepository userRepository = new UserRepositoryImpl();
@@ -42,6 +51,9 @@ public class AuthService {
     /**
      * Добавление нового пользователя в базу данных
      * используя email и password
+     *
+     * @param user данные пользователя для авторизации
+     * @return UserAuthDto dto пользователя для авторизации
      */
     public UserAuthDto userRegistration(RegUser user) {
         UserRepository userRepository = new UserRepositoryImpl();

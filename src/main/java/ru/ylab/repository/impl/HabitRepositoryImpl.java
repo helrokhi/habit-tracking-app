@@ -54,36 +54,6 @@ public class HabitRepositoryImpl implements HabitRepository, DatabaseRepository 
     }
 
     @Override
-    public HabitDto updateHabitTitle(Long habitId, String title) {
-        try (Connection connection = DriverManager.getConnection(URL_DB, USER_DB, PASSWORD_DB)) {
-            updateHabitDtoTitle(habitId, title, connection);
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-        }
-        return getHabitDtoById(habitId);
-    }
-
-    @Override
-    public HabitDto updateHabitText(Long habitId, String text) {
-        try (Connection connection = DriverManager.getConnection(URL_DB, USER_DB, PASSWORD_DB)) {
-            updateHabitDtoText(habitId, text, connection);
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-        }
-        return getHabitDtoById(habitId);
-    }
-
-    @Override
-    public HabitDto updateHabitFrequency(Long habitId, String frequency) {
-        try (Connection connection = DriverManager.getConnection(URL_DB, USER_DB, PASSWORD_DB)) {
-            updateHabitDtoFrequency(habitId, frequency, connection);
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-        }
-        return getHabitDtoById(habitId);
-    }
-
-    @Override
     public HabitDto updateHabitDto(HabitDto habitDto) {
         try (Connection connection = DriverManager.getConnection(URL_DB, USER_DB, PASSWORD_DB)) {
             update(habitDto, connection);
@@ -287,55 +257,6 @@ public class HabitRepositoryImpl implements HabitRepository, DatabaseRepository 
                         "h.text = '" + text + "', " +
                         "h.frequency = '" + frequency + "' " +
                         "WHERE h.id = '" + habitDto.getId() + "'";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(updateDataSql);
-            resultSet.close();
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
-    }
-
-    private void updateHabitDtoTitle(Long habitId, String title, Connection connection) {
-        String updateDataSql =
-                "UPDATE " +
-                        "tracking_habit.habit h " +
-                        "SET title = " +
-                        "'" + title + "' " +
-                        "WHERE h.id = '" + habitId + "'";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(updateDataSql);
-            resultSet.close();
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
-    }
-
-    private void updateHabitDtoText(Long habitId, String text, Connection connection) {
-        String updateDataSql =
-                "UPDATE " +
-                        "tracking_habit.habit h " +
-                        "SET text = " +
-                        "'" + text + "' " +
-                        "WHERE h.id = '" + habitId + "'";
-
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(updateDataSql);
-            resultSet.close();
-        } catch (Exception exception) {
-            System.out.println(exception.getMessage());
-        }
-    }
-
-    private void updateHabitDtoFrequency(Long habitId, String frequency, Connection connection) {
-        String updateDataSql =
-                "UPDATE " +
-                        "tracking_habit.habit h " +
-                        "SET frequency = " +
-                        "'" + frequency + "' " +
-                        "WHERE h.id = '" + habitId + "'";
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(updateDataSql);
