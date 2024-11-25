@@ -14,5 +14,6 @@
         <include file="insert-person-table_init.xml" relativeToChangelogFile="true"/>
         <include file="insert-habit-table_init.xml" relativeToChangelogFile="true"/>
         <include file="insert-habit-history-table_init.xml" relativeToChangelogFile="true"/>
+        <include file="table-notification_init.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

@@ -13,11 +13,13 @@ public class HabitsController {
         UserService userService = new UserService();
         HabitController habitController = new HabitController(person);
         ViewHabitsController viewHabitsController = new ViewHabitsController(person);
+        NotificationsController notificationsController = new NotificationsController(person);
 
         System.out.println("Управление привычками " + person);
         switch (scannerService.menuHabits()) {
             case "1" -> viewHabitsController.view();
             case "2" -> habitController.habit();
+            case "3" -> notificationsController.notices();
             default -> userService.account(person);
         }
     }

@@ -98,6 +98,7 @@ public class ScannerService {
         System.out.println(
                 ONE + "Просмотр привычек\n" +
                         TWO + "Работа с привычкой\n" +
+                        THREE + "Уведомления\n" +
                         ZERO + "Вернуться в личный кабинет");
         return scanner.nextLine().trim();
     }
@@ -194,13 +195,28 @@ public class ScannerService {
         return scanner.nextLine().trim();
     }
 
-
     /**
      * Меню администрирования для пользователя с ролью admin
      *
      * @return String данные из консоли о пункте меню
      */
     public String administrationMenu() {
+        scanner = new Scanner(System.in);
+        System.out.println(
+                ONE + "Список пользователей\n" +
+                        TWO + "Список привычек\n" +
+                        THREE + "Блокировка пользователя\n" +
+                        FOUR + "Удаление пользователя\n" +
+                        ZERO + "Вернуться в личный кабинет");
+        return scanner.nextLine().trim();
+    }
+
+    /**
+     * Меню уведомлений
+     *
+     * @return String данные из консоли о пункте меню
+     */
+    public String notificationsMenu() {
         scanner = new Scanner(System.in);
         System.out.println(
                 ONE + "Список пользователей\n" +
